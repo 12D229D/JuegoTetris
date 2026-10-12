@@ -1,0 +1,336 @@
+/* Reset de estilos básicos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0f111a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Contenedor principal */
+.game-container {
+    background: #1e2230;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 168, 255, 0.2);
+    padding: 24px;
+    max-width: 550px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #00f0ff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+/* Diseño del juego */
+.game-layout {
+    display: grid;
+    grid-template-columns: auto 180px;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Contenedor del tablero */
+.board-container {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #0c0e14;
+    border: 3px solid #3b4252;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8) inset;
+    width: 300px;
+    height: 600px;
+}
+
+#game-board {
+    display: block;
+}
+
+/* Overlays (Pantallas de fin de juego y pausa) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 14, 20, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.hidden {
+    display: none;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.overlay-content {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background: #1e2230;
+    border: 2px solid #ff007f;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#pause-screen .overlay-content {
+    border-color: #ffaa00;
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.4);
+}
+
+.overlay-content h2 {
+    color: #ff007f;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+#pause-screen .overlay-content h2 {
+    color: #ffaa00;
+}
+
+.overlay-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.overlay-content span {
+    font-weight: bold;
+    color: #00f0ff;
+    font-size: 1.4rem;
+}
+
+/* Panel lateral */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panel {
+    background: #131622;
+    border: 2px solid #2e3440;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.panel h3 {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+/* Siguiente pieza preview */
+.next-piece-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#next-piece {
+    background-color: #0c0e14;
+    border: 1px solid #2e3440;
+    border-radius: 4px;
+}
+
+/* Panel de estadísticas */
+.stats-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #718096;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00f0ff;
+}
+
+/* Panel de controles */
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn {
+    background: #2e3440;
+    color: #e5e9f0;
+    border: none;
+    padding: 10px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover:not(:disabled) {
+    background: #434c5e;
+    transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#start-btn {
+    background: #00e676;
+    color: #000;
+}
+
+#start-btn:hover:not(:disabled) {
+    background: #33f08c;
+    box-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+}
+
+#pause-btn {
+    background: #ff9100;
+    color: #000;
+}
+
+#pause-btn:hover:not(:disabled) {
+    background: #ffa726;
+    box-shadow: 0 0 10px rgba(255, 145, 0, 0.4);
+}
+
+#restart-btn-overlay {
+    background: #ff007f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+#restart-btn-overlay:hover {
+    background: #ff3399;
+}
+
+/* Panel de instrucciones */
+.instructions-panel {
+    text-align: left;
+}
+
+.instructions-panel h3 {
+    text-align: center;
+}
+
+.instructions-panel ul {
+    list-style: none;
+    font-size: 0.78rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.instructions-panel li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+kbd {
+    background-color: #2e3440;
+    border: 1px solid #4c566a;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #1e2230 inset;
+    color: #d8dee9;
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 4px;
+    font-family: inherit;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 580px) {
+    body {
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+    
+    .game-container {
+        padding: 15px;
+    }
+
+    .game-layout {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .panel {
+        flex: 1 1 140px;
+    }
+
+    .controls-panel {
+        flex: 1 1 100%;
+        flex-direction: row;
+    }
+
+    .controls-panel .btn {
+        flex: 1;
+    }
+    
+    .instructions-panel {
+        flex: 1 1 100%;
+    }
+}

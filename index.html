@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris HTML5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>TETRIS</h1>
+        </header>
+
+        <div class="game-layout">
+            <!-- Tablero de juego principal -->
+            <div class="board-container">
+                <canvas id="game-board" width="300" height="600"></canvas>
+                <div id="game-over-screen" class="overlay hidden">
+                    <div class="overlay-content">
+                        <h2>JUEGO TERMINADO</h2>
+                        <p>Puntuación Final: <span id="final-score">0</span></p>
+                        <button id="restart-btn-overlay">Jugar de Nuevo</button>
+                    </div>
+                </div>
+                <div id="pause-screen" class="overlay hidden">
+                    <div class="overlay-content">
+                        <h2>JUEGO PAUSADO</h2>
+                        <p>Presiona P para Continuar</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel lateral de información y controles -->
+            <div class="sidebar">
+                <div class="panel next-piece-panel">
+                    <h3>Siguiente Pieza</h3>
+                    <canvas id="next-piece" width="120" height="120"></canvas>
+                </div>
+
+                <div class="panel stats-panel">
+                    <div class="stat-item">
+                        <span class="stat-label">PUNTUACIÓN</span>
+                        <span id="score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">NIVEL</span>
+                        <span id="level" class="stat-value">1</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">LÍNEAS</span>
+                        <span id="lines" class="stat-value">0</span>
+                    </div>
+                </div>
+
+                <div class="controls-panel">
+                    <button id="start-btn" class="btn">Empezar</button>
+                    <button id="pause-btn" class="btn" disabled>Pausar</button>
+                </div>
+
+                <div class="panel instructions-panel">
+                    <h3>Controles</h3>
+                    <ul>
+                        <li><kbd>←</kbd> <kbd>→</kbd> : Mover</li>
+                        <li><kbd>↑</kbd> o <kbd>X</kbd> : Rotar</li>
+                        <li><kbd>↓</kbd> : Bajar rápido</li>
+                        <li><kbd>Espacio</kbd> : Caída libre</li>
+                        <li><kbd>P</kbd> : Pausar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
